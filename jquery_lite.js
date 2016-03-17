@@ -58,7 +58,6 @@
   };
 
   DOMNodeCollection.prototype.removeClass = function(string) {
-    // var classes = string.split(" ");
     for (var i = 0; i < this.nodes.length; i++) {
       var classArr= this.nodes[i].className.split(" ");
       for ( var j = 0; j < classArr.length; j++){
@@ -74,5 +73,14 @@
     }
   };
 
-
+  DOMNodeCollection.prototype.children = function() {
+    var kids = [];
+    // debugger
+    for (var i = 0; i < this.nodes.length; i++) {
+      for (var j = 0; j < this.nodes[i].children.length; j++) {
+        kids.push(new DOMNodeCollection(this.nodes[i].children[j]));
+      }
+    }
+    return kids;
+  };
 })(this);
